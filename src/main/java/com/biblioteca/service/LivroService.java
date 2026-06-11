@@ -12,10 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * Camada de serviço para a entidade Livro.
- * Contém a lógica de negócio e se comunica com o repositório.
- */
+
 @Service
 public class LivroService {
 
@@ -28,17 +25,17 @@ public class LivroService {
     @Autowired
     private EditoraRepository editoraRepository;
 
-    // Retorna todos os livros
+   
     public List<Livro> listarTodos() {
         return livroRepository.findAll();
     }
 
-    // Busca livro por ID
+   
     public Optional<Livro> buscarPorId(Long id) {
         return livroRepository.findById(id);
     }
 
-    // Salva um novo livro (recebe IDs de autor e editora)
+    
     public Livro salvar(Livro livro, Long autorId, Long editoraId) {
         Autor autor = autorRepository.findById(autorId)
                 .orElseThrow(() -> new RuntimeException("Autor não encontrado com id: " + autorId));
@@ -52,7 +49,7 @@ public class LivroService {
         return livroRepository.save(livro);
     }
 
-    // Atualiza um livro existente
+    
     public Livro atualizar(Long id, Livro livroAtualizado, Long autorId, Long editoraId) {
         Livro livro = livroRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Livro não encontrado com id: " + id));
@@ -72,7 +69,7 @@ public class LivroService {
         return livroRepository.save(livro);
     }
 
-    // Deleta um livro pelo ID
+   
     public void deletar(Long id) {
         livroRepository.deleteById(id);
     }
