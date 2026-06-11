@@ -3,10 +3,7 @@ package com.biblioteca.model;
 import jakarta.persistence.*;
 import java.util.List;
 
-/**
- * Entidade que representa um Autor no sistema de biblioteca.
- * Um autor pode ter vários livros associados.
- */
+
 @Entity
 @Table(name = "autores")
 public class Autor {
@@ -24,21 +21,21 @@ public class Autor {
     @Column(nullable = false)
     private String email;
 
-    // Um autor pode ter vários livros
+    
     @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL)
     private List<Livro> livros;
 
-    // Construtor padrão (obrigatório para JPA)
+   
     public Autor() {}
 
-    // Construtor com parâmetros
+    
     public Autor(String nome, String nacionalidade, String email) {
         this.nome = nome;
         this.nacionalidade = nacionalidade;
         this.email = email;
     }
 
-    // Getters e Setters
+   
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
