@@ -2,10 +2,7 @@ package com.biblioteca.model;
 
 import jakarta.persistence.*;
 
-/**
- * Entidade que representa um Livro no sistema de biblioteca.
- * Um livro pertence a um Autor e a uma Editora (composição).
- */
+
 @Entity
 @Table(name = "livros")
 public class Livro {
@@ -23,20 +20,20 @@ public class Livro {
     @Column(nullable = false)
     private Integer anoPub;
 
-    // Relacionamento: Livro pertence a um Autor
+    
     @ManyToOne
     @JoinColumn(name = "autor_id", nullable = false)
     private Autor autor;
 
-    // Relacionamento: Livro pertence a uma Editora
+   
     @ManyToOne
     @JoinColumn(name = "editora_id", nullable = false)
     private Editora editora;
 
-    // Construtor padrão (obrigatório para JPA)
+    
     public Livro() {}
 
-    // Construtor com parâmetros
+   
     public Livro(String titulo, String isbn, Integer anoPub, Autor autor, Editora editora) {
         this.titulo = titulo;
         this.isbn = isbn;
@@ -45,7 +42,7 @@ public class Livro {
         this.editora = editora;
     }
 
-    // Getters e Setters
+   
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
