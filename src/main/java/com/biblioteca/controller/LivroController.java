@@ -11,10 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * Controller REST para a entidade Livro.
- * Expõe os endpoints da API em /api/livros.
- */
+
 @RestController
 @RequestMapping("/api/livros")
 @Tag(name = "Livros", description = "Endpoints para gerenciamento de livros")
@@ -23,14 +20,14 @@ public class LivroController {
     @Autowired
     private LivroService livroService;
 
-    // GET /api/livros - Lista todos os livros
+    
     @GetMapping
     @Operation(summary = "Lista todos os livros")
     public ResponseEntity<List<Livro>> listarTodos() {
         return ResponseEntity.ok(livroService.listarTodos());
     }
 
-    // GET /api/livros/{id} - Busca livro por ID
+  
     @GetMapping("/{id}")
     @Operation(summary = "Busca um livro pelo ID")
     public ResponseEntity<Livro> buscarPorId(@PathVariable Long id) {
@@ -39,7 +36,7 @@ public class LivroController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // POST /api/livros?autorId=1&editoraId=1 - Cria um novo livro
+    
     @PostMapping
     @Operation(summary = "Cria um novo livro (informe autorId e editoraId como parâmetros)")
     public ResponseEntity<Livro> criar(
@@ -54,7 +51,7 @@ public class LivroController {
         }
     }
 
-    // PUT /api/livros/{id}?autorId=1&editoraId=1 - Atualiza um livro existente
+  
     @PutMapping("/{id}")
     @Operation(summary = "Atualiza um livro existente (informe autorId e editoraId como parâmetros)")
     public ResponseEntity<Livro> atualizar(
@@ -70,7 +67,7 @@ public class LivroController {
         }
     }
 
-    // DELETE /api/livros/{id} - Deleta um livro
+   
     @DeleteMapping("/{id}")
     @Operation(summary = "Deleta um livro pelo ID")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
