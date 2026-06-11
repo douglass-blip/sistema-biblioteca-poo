@@ -11,10 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * Controller REST para a entidade Autor.
- * Expõe os endpoints da API em /api/autores.
- */
+
 @RestController
 @RequestMapping("/api/autores")
 @Tag(name = "Autores", description = "Endpoints para gerenciamento de autores")
@@ -23,14 +20,14 @@ public class AutorController {
     @Autowired
     private AutorService autorService;
 
-    // GET /api/autores - Lista todos os autores
+    
     @GetMapping
     @Operation(summary = "Lista todos os autores")
     public ResponseEntity<List<Autor>> listarTodos() {
         return ResponseEntity.ok(autorService.listarTodos());
     }
 
-    // GET /api/autores/{id} - Busca autor por ID
+    
     @GetMapping("/{id}")
     @Operation(summary = "Busca um autor pelo ID")
     public ResponseEntity<Autor> buscarPorId(@PathVariable Long id) {
@@ -39,7 +36,7 @@ public class AutorController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // POST /api/autores - Cria um novo autor
+   
     @PostMapping
     @Operation(summary = "Cria um novo autor")
     public ResponseEntity<Autor> criar(@RequestBody Autor autor) {
@@ -47,7 +44,7 @@ public class AutorController {
         return ResponseEntity.status(HttpStatus.CREATED).body(novoAutor);
     }
 
-    // PUT /api/autores/{id} - Atualiza um autor existente
+ 
     @PutMapping("/{id}")
     @Operation(summary = "Atualiza um autor existente")
     public ResponseEntity<Autor> atualizar(@PathVariable Long id, @RequestBody Autor autor) {
@@ -59,7 +56,7 @@ public class AutorController {
         }
     }
 
-    // DELETE /api/autores/{id} - Deleta um autor
+   
     @DeleteMapping("/{id}")
     @Operation(summary = "Deleta um autor pelo ID")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
